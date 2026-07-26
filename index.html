@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Iqbal & Iqra</title>
+    <!-- Elegant Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables: Maroon, Peach, and Gold Theme */
+        :root {
+            --bg-peach: #fcf1ed;      
+            --primary-maroon: #9b2c3c; 
+            --accent-gold: #c49c60;   
+            --text-dark: #5a3c42;
+            --text-light: #7b5b5f;
+            
+            /* Fonts */
+            --font-cursive: 'Allura', cursive; 
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-peach);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- COVER / CLOSED ENVELOPE SECTION --- */
+        #cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #fce4ec 0%, #f48fb1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
+            overflow: hidden; 
+        }
+
+        #cover.open {
+            transform: translateY(-100vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Particles / Confetti */
+        .particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            animation: fall 6s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .closed-envelope {
+            width: 90%;
+            max-width: 800px;
+            height: auto;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .closed-envelope:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- MAIN INVITATION CARD --- */
+        #invitation {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 2s ease 1s, transform 2s ease 1s;
+            padding: 40px 30px;
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: var(--bg-peach);
+            
+            border: 6px solid #fff;
+            outline: 2px solid var(--accent-gold);
+            outline-offset: -12px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(155, 44, 60, 0.15);
+            position: relative;
+        }
+
+        #invitation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Corner Floral Ornaments */
+        .card-corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 5px;
+            pointer-events: none;
+        }
+        .card-corner.tl { top: 12px; left: 12px; border-right: none; border-bottom: none; border-top-left-radius: 12px;}
+        .card-corner.tr { top: 12px; right: 12px; border-left: none; border-bottom: none; border-top-right-radius: 12px;}
+        .card-corner.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; border-bottom-left-radius: 12px;}
+        .card-corner.br { bottom: 12px; right: 12px; border-left: none; border-top: none; border-bottom-right-radius: 12px;}
+
+        /* Typography & Layout */
+        .arabic-bismillah {
+            font-size: 1.8rem;
+            color: var(--primary-maroon);
+            margin-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .intro-text {
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+
+        .wedding-of-script {
+            font-family: var(--font-cursive);
+            font-size: 5.5rem;
+            color: var(--accent-gold);
+            line-height: 0.8;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .of-text {
+            font-family: var(--font-cursive);
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 40px;
+        }
+
+        .couple-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .person-col {
+            flex: 1;
+            text-align: center;
+        }
+
+        .role-title {
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .role-title::before, .role-title::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-gold);
+            margin: 0 10px;
+        }
+
+        .person-name {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-maroon);
+            margin-bottom: 15px;
+        }
+
+        .parents-info {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        .parents-info span {
+            color: var(--text-light);
+            display: inline-block;
+            width: 60px;
+            text-align: left;
+        }
+
+        .ampersand-center {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-maroon);
+            border: 2px solid var(--accent-gold);
+            outline: 2px solid var(--primary-maroon);
+            outline-offset: -6px;
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ampersand-center span {
+            transform: rotate(-45deg);
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .details-box {
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 25px 40px;
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        .details-box::before, .details-box::after {
+            content: '✿';
+            position: absolute;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            background: var(--bg-peach);
+            padding: 0 5px;
+        }
+        .details-box::before { top: -14px; left: 20px; }
+        .details-box::after { bottom: -14px; right: 20px; }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--primary-maroon);
+            margin: 10px 0;
+        }
+
+        .detail-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 15px 0;
+        }
+
+        .detail-label {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            width: 100px;
+            text-align: right;
+            padding-right: 15px;
+            border-right: 2px solid var(--accent-gold);
+            margin-right: 15px;
+        }
+
+        /* --- ADVANCED MAP ANIMATION SECTION --- */
+        .map-container {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            margin-top: 40px;
+            border: 1px solid rgba(196, 156, 96, 0.4);
+        }
+
+        .map-container h3 {
+            font-family: var(--font-serif);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--primary-maroon); 
+        }
+
+        /* Dynamic Text Display */
+        .journey-info {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-peach);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold);
+        }
+        .journey-point { font-weight: 500; flex: 1; }
+        .journey-arrow { color: var(--accent-gold); margin: 0 15px; font-size: 1.2rem;}
+
+        /* The Animation Window */
+        .journey-wrapper {
+            position: relative;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: linear-gradient(to bottom, #fde4d0, #fcf1ed); /* Peach sky */
+            border: 1.5px solid var(--accent-gold);
+        }
+
+        .scrolling-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%; /* Double width to allow endless scrolling */
+            height: 100%;
+            animation: scrollBg linear infinite;
+        }
+
+        /* 1. Train Background */
+        .bg-train {
+            background: 
+                linear-gradient(transparent 95px, #5c4033 95px, #5c4033 98px, transparent 98px), 
+                repeating-linear-gradient(90deg, #3e2723 0, #3e2723 5px, transparent 5px, transparent 35px), 
+                linear-gradient(transparent 95px, rgba(155, 44, 60, 0.15) 95px, rgba(155, 44, 60, 0.15) 120px); 
+            background-position: 0 0, 0 95px, 0 0;
+            background-size: 100% 100%, 100% 10px, 100% 100%;
+            background-repeat: repeat-x;
+            animation-duration: 4s;
+        }
+
+        /* 2. City Background */
+        .bg-city {
+            background: 
+                repeating-linear-gradient(90deg, #fff 0, #fff 20px, transparent 20px, transparent 40px), 
+                linear-gradient(transparent 95px, rgba(90, 60, 66, 0.4) 95px, rgba(90, 60, 66, 0.6) 120px), 
+                linear-gradient(transparent 40px, rgba(196, 156, 96, 0.3) 40px, rgba(196, 156, 96, 0.3) 95px, transparent 95px), 
+                repeating-linear-gradient(90deg, transparent 0, transparent 15px, var(--bg-peach) 15px, var(--bg-peach) 25px); 
+            background-position: 0 102px, 0 0, 0 0, 0 50px;
+            background-size: 100% 2px, 100% 100%, 300px 100%, 60px 40px;
+            background-repeat: repeat-x;
+            animation-duration: 2.5s;
+        }
+
+        /* 3. Rickshaw Background */
+        .bg-cng {
+            background: 
+                repeating-linear-gradient(90deg, var(--accent-gold) 0, var(--accent-gold) 20px, transparent 20px, transparent 40px), 
+                linear-gradient(transparent 95px, rgba(90, 60, 66, 0.5) 95px, rgba(90, 60, 66, 0.7) 120px), 
+                repeating-linear-gradient(90deg, var(--primary-maroon) 0, var(--primary-maroon) 8px, transparent 8px, transparent 25px); 
+            background-position: 0 102px, 0 0, 0 75px;
+            background-size: 100% 2px, 100% 100%, 100px 20px;
+            background-repeat: repeat-x;
+            animation-duration: 3s; /* slightly slower for pedal rickshaw */
+        }
+
+        @keyframes scrollBg {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* The Moving Vehicle */
+        .vehicle-container {
+            position: absolute;
+            bottom: 12px;
+            left: 5%; 
+            z-index: 10;
+        }
+
+        .bounce-flip {
+            display: inline-block;
+            font-size: 2.8rem;
+            transform: scaleX(-1); /* Flips Apple/Google emojis to strictly face right ➔ */
+            animation: bounce 0.3s infinite alternate;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+        }
+
+        @keyframes bounce {
+            from { margin-bottom: 0; }
+            to { margin-bottom: 3px; }
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-maroon);
+            color: var(--bg-peach);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            display: none;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .couple-grid { flex-direction: column; gap: 30px; }
+            .ampersand-center { margin: 10px auto; }
+            .detail-row { flex-direction: column; text-align: center; }
+            .detail-label { text-align: center; border-right: none; border-bottom: 2px solid var(--accent-gold); padding: 0 0 5px 0; margin: 0 0 10px 0; width: auto;}
+            .wedding-of-script { font-size: 4.5rem; }
+            .journey-info { flex-direction: column; font-size: 0.8rem;}
+            .journey-arrow { transform: rotate(90deg); margin: 5px 0;}
+            #invitation { padding: 30px 15px; margin: 20px 10px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="wedding-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Cover / Closed Envelope (Maroon version) -->
+    <div id="cover">
+        <!-- Particle container -->
+        <div id="particles-container"></div>
+        
+        <div class="closed-envelope" onclick="openInvitation()">
+            <svg viewBox="0 0 800 520" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                        <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#000" flood-opacity="0.4"/>
+                    </filter>
+                    <filter id="flap-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                        <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+                    </filter>
+                    <filter id="seal-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000" flood-opacity="0.6"/>
+                    </filter>
+                </defs>
+
+                <!-- Envelope Base / Back -->
+                <rect x="40" y="60" width="720" height="420" fill="#9b2c3c" filter="url(#shadow)" rx="4"/>
+                <path d="M 40 60 L 350 270 L 40 480 Z" fill="#7d2230"/>
+                <path d="M 760 60 L 450 270 L 760 480 Z" fill="#7d2230"/>
+                <path d="M 40 480 L 400 270 L 760 480 Z" fill="#9b2c3c" stroke="#7d2230" stroke-width="2"/>
+
+                <!-- Gold foil borders on bottom flap -->
+                <path d="M 60 465 L 400 280 L 740 465" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                <path d="M 60 415 C 75 415, 85 425, 85 440 C 85 455, 75 465, 60 465" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                <path d="M 740 415 C 725 415, 715 425, 715 440 C 715 455, 725 465, 740 465" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+
+                <!-- Top Flap -->
+                <path d="M 40 60 L 760 60 L 760 180 C 600 320, 500 340, 400 340 C 300 340, 200 320, 40 180 Z" fill="#9b2c3c" filter="url(#flap-shadow)"/>
+                <path d="M 60 80 L 740 80 L 740 170 C 590 295, 490 320, 400 320 C 310 320, 210 295, 60 170 Z" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                <path d="M 70 90 L 730 90 L 730 165 C 585 285, 490 308, 400 308 C 310 308, 215 285, 70 165 Z" fill="none" stroke="#d4af37" stroke-width="1"/>
+
+                <g fill="none" stroke="#d4af37" stroke-width="1.5">
+                    <path d="M 60 170 C 80 200, 120 220, 150 200"/>
+                    <path d="M 60 150 C 90 180, 140 180, 160 160"/>
+                    <path d="M 740 170 C 720 200, 680 220, 650 200"/>
+                    <path d="M 740 150 C 710 180, 660 180, 640 160"/>
+                </g>
+
+                <path d="M 360 110 L 400 100 L 440 110" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                <path d="M 330 135 L 470 135" fill="none" stroke="#d4af37" stroke-width="0.5"/>
+                <text x="400" y="160" fill="#d4af37" font-family="'Playfair Display', serif" font-size="13" letter-spacing="4" text-anchor="middle">THE WEDDING PROGRAMME</text>
+
+                <!-- Scalloped Medallion Seal -->
+                <g transform="translate(400, 310)" filter="url(#seal-shadow)">
+                    <path d="M 0 -85 C 35 -85, 45 -65, 65 -65 C 85 -65, 95 -35, 95 0 C 95 35, 85 65, 65 65 C 45 65, 35 85, 0 85 C -35 85, -45 65, -65 65 C -85 65, -95 35, -95 0 C -95 -35, -85 -65, -65 -65 C -45 -65, -35 -85, 0 -85 Z" fill="#d4af37"/>
+                    <path d="M 0 -80 C 30 -80, 40 -60, 60 -60 C 80 -60, 90 -30, 90 0 C 90 30, 80 60, 60 60 C 40 60, 30 80, 0 80 C -30 80, -40 60, -60 60 C -80 60, -90 30, -90 0 C -90 -30, -80 -60, -60 -60 C -40 -60, -30 -80, 0 -80 Z" fill="#9b2c3c"/>
+                    <path d="M 0 -72 C 25 -72, 34 -54, 52 -54 C 70 -54, 78 -27, 78 0 C 78 27, 70 54, 52 54 C 34 54, 25 72, 0 72 C -25 72, -34 54, -52 54 C -70 54, -78 27, -78 0 C -78 -27, -70 -54, -52 -54 C -34 -54, -25 -72, 0 -72 Z" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                    <text x="0" y="10" fill="#d4af37" font-family="'Alex Brush', cursive" font-size="46" text-anchor="middle">Wedding</text>
+                    <text x="0" y="38" fill="#d4af37" font-family="'Playfair Display', serif" font-size="11" letter-spacing="3" text-anchor="middle">INVITATION</text>
+                    <path d="M -15 50 C -5 55, -5 65, 0 70 C 5 65, 5 55, 15 50" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Main Invitation Content -->
+    <div id="invitation">
+        
+        <!-- Corner Frame Graphics -->
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+
+        <!-- Header / Bismillah -->
+        <div class="arabic-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 20px;">In the name of Allah, the Most Gracious, the Most Merciful</p>
+        
+        <p class="intro-text">
+            With the blessings of Allah and with the love and support of our family and friends, we are delighted to invite you to the
+        </p>
+        
+        <!-- Script Section -->
+        <div class="wedding-of-script">Wedding</div>
+        <div class="of-text">of</div>
+
+        <!-- Couple Details -->
+        <div class="couple-grid">
+            <!-- Groom -->
+            <div class="person-col">
+                <div class="role-title">Groom</div>
+                <div class="person-name">Md. Iqbal Hasan</div>
+                <div class="parents-info">
+                    <p><span>Father</span> : Md. Kamrul Hasan</p>
+                    <p><span>Mother</span> : Zibanara Begum</p>
+                </div>
+            </div>
+
+            <!-- Ampersand -->
+            <div class="ampersand-center">
+                <span>&</span>
+            </div>
+
+            <!-- Bride -->
+            <div class="person-col">
+                <div class="role-title">Bride</div>
+                <div class="person-name">Sabiqunnahar Iqra</div>
+                <div class="parents-info">
+                    <p><span>Father</span> : Mahbubur Rahman Iqbal</p>
+                    <p><span>Mother</span> : Khaleda Parvin</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="intro-text" style="margin-bottom: 15px;">
+            Your presence will make this joyous occasion even more special and memorable for us.
+        </p>
+
+        <!-- Date & Place Structured Box -->
+        <div class="details-box">
+            <div class="detail-row">
+                <div class="detail-label">📅 DATE</div>
+                <div><strong>19 August 2026</strong></div>
+            </div>
+            
+            <div class="detail-divider"></div>
+            
+            <div class="detail-row">
+                <div class="detail-label">📍 PLACE</div>
+                <div><strong>Jamalpur Community Centre</strong></div>
+            </div>
+        </div>
+
+        <p class="intro-text" style="margin-top: 30px;">
+            We look forward to celebrating this beautiful occasion with you.<br>
+            <span style="color: var(--accent-gold); font-size: 1.2rem; margin-top: 10px; display: inline-block;">♥♥♥</span>
+        </p>
+
+        <!-- Dynamic Multi-Stage Animated Map Section -->
+        <div class="map-container">
+            <h3>Journey to Our Venue</h3>
+            
+            <div class="journey-info">
+                <span id="journey-start" class="journey-point">Kamalapur Rail Station</span>
+                <span class="journey-arrow">➔</span>
+                <span id="journey-end" class="journey-point">Jamalpur Railway Station</span>
+            </div>
+
+            <div class="journey-wrapper">
+                <div id="journey-bg" class="scrolling-bg bg-train"></div>
+                <div id="journey-vehicle" class="vehicle-container">
+                    <div id="vehicle-icon" class="bounce-flip">🚂</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Music Control Button -->
+    <button class="audio-control" id="music-btn" onclick="toggleMusic()">🎵</button>
+
+    <script>
+        // Envelope & Audio Logic
+        const cover = document.getElementById('cover');
+        const invitation = document.getElementById('invitation');
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const particlesContainer = document.getElementById('particles-container');
+        let isPlaying = false;
+
+        function createParticles() {
+            const particleTypes = ['💖', '♥', '✨', '🤍', '⭐'];
+            const numParticles = 40;
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.innerText = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.fontSize = (0.8 + Math.random() * 1) + 'rem'; 
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles(); 
+
+        function openInvitation() {
+            cover.classList.add('open');
+            invitation.classList.add('visible');
+            
+            music.play().then(() => {
+                isPlaying = true;
+                musicBtn.style.display = 'block'; 
+            }).catch(error => {
+                console.log("Audio autoplay prevented. User must interact to play sound.");
+                musicBtn.style.display = 'block';
+            });
+            
+            document.body.style.overflowY = 'auto';
+            
+            // Start the vehicle animation sequence when opened
+            playJourney();
+        }
+
+        document.body.style.overflowY = 'hidden';
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '🔇';
+            } else {
+                music.play();
+                musicBtn.innerHTML = '🎵';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- Advanced Journey Animation Logic ---
+        const journeyStages = [
+            {
+                vehicle: '🚂',
+                bgClass: 'bg-train',
+                start: 'Kamalapur Rail Station',
+                end: 'Jamalpur Railway Station',
+                duration: 6500 // Slower train ride
+            },
+            {
+                vehicle: '🛺',
+                bgClass: 'bg-city',
+                start: 'Jamalpur Railway Station',
+                end: 'Pach Rastar Mor',
+                duration: 4500 // Faster city ride
+            },
+            {
+                vehicle: '🚲', // Rickshaw icon
+                bgClass: 'bg-cng',
+                start: 'Pach Rastar Mor',
+                end: 'Venue',
+                duration: 4500 // Rickshaw ride
+            }
+        ];
+
+        let currentStage = 0;
+        const vehicleContainer = document.getElementById('journey-vehicle');
+        const vehicleIcon = document.getElementById('vehicle-icon');
+        const journeyBg = document.getElementById('journey-bg');
+        const startText = document.getElementById('journey-start');
+        const endText = document.getElementById('journey-end');
+
+        function playJourney() {
+            const stage = journeyStages[currentStage];
+            
+            // 1. Update UI Text and Icons
+            startText.innerText = stage.start;
+            endText.innerText = stage.end;
+            vehicleIcon.innerText = stage.vehicle;
+            journeyBg.className = 'scrolling-bg ' + stage.bgClass;
+            
+            // 2. Reset Vehicle Position instantly
+            vehicleContainer.style.transition = 'none';
+            vehicleContainer.style.left = '5%';
+            
+            // 3. Force browser reflow to apply the reset
+            void vehicleContainer.offsetWidth;
+            
+            // 4. Animate driving towards the right over the specified duration
+            vehicleContainer.style.transition = `left ${stage.duration}ms linear`;
+            vehicleContainer.style.left = '80%';
+            
+            // 5. Loop to next stage when finished
+            setTimeout(() => {
+                currentStage = (currentStage + 1) % journeyStages.length;
+                playJourney();
+            }, stage.duration + 400); // 400ms buffer between stages for a smooth reset
+        }
+    </script>
+</body>
+</html>
