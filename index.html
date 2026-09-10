@@ -260,8 +260,10 @@
             text-align: center;
             padding-right: 15px;
             margin-right: 15px;
-            border-right: 2px solid var(--accent-gold);
         }
+		#border-right {
+			border-right: 2px solid var(--accent-gold);
+		}
         .map-preview-wrapper {
             margin: 20px auto 10px auto;
             border-radius: 16px;
@@ -536,9 +538,10 @@
         </div>
         <p class="intro-text" style="margin-bottom:15px;">Your presence will make this joyous occasion even more special and memorable for us.</p>
         <div class="details-box">
-            <div class="detail-row"><div class="detail-label">📅 DATE</div><div><strong>02 October 2026</strong></div></div>
+            <div class="detail-row"><div class="detail-label" id="border-right">📅 DATE</div><div><strong>02 October 2026</strong></div></div>
             <div class="detail-divider"></div>
             <div class="detail-row"><div class="detail-label">📍 PLACE</div></div>
+			<img src="venue.jpg" alt="The Reception Venue" style="width:100%; max-width:100%; height:auto; border-radius:16px; display:block; margin:0 auto 20px auto; object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,0.1); border:2px solid var(--accent-gold);">
             <div style="font-size:13px; color:var(--primary-maroon);"><strong>Master Bari, Jamalpur-Madarganj Road, Hazrabari, Melandaha, Jamalpur</strong></div>
             <div style="margin-top:16px;">
                 <div class="map-preview-wrapper">
@@ -551,8 +554,8 @@
 
         <!-- JOURNEY SECTION WITH BUS/TRAIN TOGGLE -->
         <div class="map-container">
-            <h3>Journey to the Reception Venue (from Dhaka)</h3>
-            <!-- mode toggle -->
+            <h3>Journey to the Reception Venue (from Dhaka)</h3>          
+			<!-- mode toggle -->
             <div class="mode-toggle">
                 <button class="mode-btn active" data-mode="bus" onclick="setTravelMode('bus')">🚌 Bus</button>
                 <button class="mode-btn" data-mode="train" onclick="setTravelMode('train')">🚂 Train</button>
