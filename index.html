@@ -442,6 +442,19 @@
         }
         .mode-btn:hover { transform: scale(1.03); }
 
+        /* Video container */
+        .venue-video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            display: block;
+            margin: 0 auto 20px auto;
+            object-fit: cover;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent-gold);
+        }
+
         @media (max-width: 768px) {
             .couple-grid { flex-direction: column; gap: 30px; }
             .ampersand-center { margin: 10px auto; }
@@ -541,7 +554,11 @@
             <div class="detail-row"><div class="detail-label" id="border-right">📅 DATE</div><div><strong>02 October 2026</strong></div></div>
             <div class="detail-divider"></div>
             <div class="detail-row"><div class="detail-label">📍 PLACE</div></div>
-			<img src="venue.jpg" alt="The Reception Venue" style="width:100%; max-width:100%; height:auto; border-radius:16px; display:block; margin:0 auto 20px auto; object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,0.1); border:2px solid var(--accent-gold);">
+            <!-- Replaced static image with looping video -->
+            <video class="venue-video" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div style="font-size:13px; color:var(--primary-maroon);"><strong>[Master Bari, Jamalpur-Madarganj Road, Hazrabari, Melandaha, Jamalpur]</strong></div>
             <div style="margin-top:16px;">
                 <div class="map-preview-wrapper">
